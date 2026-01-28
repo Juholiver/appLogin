@@ -17,4 +17,8 @@ export class LoginComponent {
   goToRegister() {
     this.router.navigate(['/register']);
   }
+
+  goToDashboard() {
+    this.router.navigate(['/dashboard']);
+  }
 }
