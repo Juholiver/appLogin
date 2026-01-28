@@ -1,6 +1,6 @@
 <div class="auth-container">
   <h2>Login</h2>
-  <form>
+  <form (submit)="$event.preventDefault()">
     <input type="email" placeholder="E-mail" #email>
     <input type="password" placeholder="Senha" #password>
     
@@ -9,6 +9,6 @@
     }
 
     <button routerLink="/dashboard">Entrar</button>
-    <a routerLink="/register">Criar conta</a>
+    <button type="button" (click)="goToRegister()">Criar conta</button>
   </form>
 </div>
