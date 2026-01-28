@@ -1,1 +1,40 @@
-<p>register works!</p>
+<div class="auth-container">
+  <h2>Criar Conta</h2>
+
+  <form>
+    <input
+      type="text"
+      placeholder="Nome completo"
+      required
+    />
+
+    <input
+      type="email"
+      placeholder="E-mail"
+      required
+    />
+
+    <input
+      type="password"
+      placeholder="Senha"
+      required
+    />
+
+    <input
+      type="password"
+      placeholder="Confirmar senha"
+      required
+    />
+
+    <!-- Exemplo de erro -->
+    <!-- <p class="error">As senhas não coincidem</p> -->
+
+    <button type="submit">
+      Cadastrar
+    </button>
+
+    <button type="button" (click)="goToLogin()">
+      Já tenho conta
+    </button>
+  </form>
+</div>
