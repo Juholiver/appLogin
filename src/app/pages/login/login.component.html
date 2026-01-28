@@ -1,1 +1,14 @@
-<p>login works!</p>
+<div class="auth-container">
+  <h2>Login</h2>
+  <form>
+    <input type="email" placeholder="E-mail" #email>
+    <input type="password" placeholder="Senha" #password>
+    
+    @if (email.value === '') {
+      <p class="error">O e-mail é obrigatório.</p>
+    }
+
+    <button routerLink="/dashboard">Entrar</button>
+    <a routerLink="/register">Criar conta</a>
+  </form>
+</div>
