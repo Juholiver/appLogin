@@ -1,1 +1,15 @@
-<p>dashboard works!</p>
+<nav>
+  <h1>Meu Dashboard</h1>
+  <button routerLink="/login">Sair</button>
+</nav>
+
+<main>
+  <h3>Lista de Atividades</h3>
+  <ul>
+    @for (item of ['Perfil', 'Configurações', 'Relatórios']; track item) {
+      <li>{{ item }}</li>
+    } @empty {
+      <li>Nenhum item encontrado.</li>
+    }
+  </ul>
+</main>
