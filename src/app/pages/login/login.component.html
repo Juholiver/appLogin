@@ -1,14 +1,38 @@
-<div class="auth-container">
-  <h2>Login</h2>
-  <form (submit)="$event.preventDefault()">
-    <input type="email" placeholder="E-mail" #email>
-    <input type="password" placeholder="Senha" #password>
-    
-    @if (email.value === '') {
-      <p class="error">O e-mail é obrigatório.</p>
-    }
+<div class="auth-page">
+  
+  <video autoplay muted loop class="bg-video">
+    <source src="assets/img/bg.mp4" type="video/mp4">
+  </video>
 
-    <button type="button" (click)="goToDashboard()">Entrar</button>
-    <button type="button" (click)="goToRegister()">Criar conta</button>
-  </form>
+  <div class="auth-container">
+    <h2>Login</h2>
+
+    <form (ngSubmit)="login()">
+
+      <input
+        type="email"
+        [(ngModel)]="email"
+        name="email"
+        placeholder="E-mail"
+        required
+      >
+
+      <input
+        type="password"
+        [(ngModel)]="password"
+        name="password"
+        placeholder="Senha"
+        required
+      >
+
+      <button type="submit">Entrar</button>
+
+      <button type="button" (click)="goToRegister()">
+        Criar conta
+      </button>
+
+    </form>
+
+    <p style="color:red">{{ erro }}</p>
+  </div>
 </div>

@@ -1,40 +1,55 @@
-<div class="auth-container">
-  <h2>Criar Conta</h2>
+<div class="auth-page">
+  <video autoplay muted loop class="bg-video">
+    <source src="assets/img/bg.mp4" type="video/mp4">
+  </video>
 
-  <form>
-    <input
-      type="text"
-      placeholder="Nome completo"
-      required
-    />
+  <div class="auth-container">
+    <h2>Criar Conta</h2>
 
-    <input
-      type="email"
-      placeholder="E-mail"
-      required
-    />
+    <form (submit)="register(); $event.preventDefault()">
 
-    <input
-      type="password"
-      placeholder="Senha"
-      required
-    />
+      <input
+        type="text"
+        [(ngModel)]="name"
+        name="name"
+        placeholder="Nome completo"
+        required
+      />
 
-    <input
-      type="password"
-      placeholder="Confirmar senha"
-      required
-    />
+      <input
+        type="email"
+        [(ngModel)]="email"
+        name="email"
+        placeholder="E-mail"
+        required
+      />
 
-    <!-- Exemplo de erro -->
-    <!-- <p class="error">As senhas não coincidem</p> -->
+      <input
+        type="password"
+        [(ngModel)]="password"
+        name="password"
+        placeholder="Senha"
+        required
+      />
 
-    <button type="submit">
-      Cadastrar
-    </button>
+      <input
+        type="password"
+        [(ngModel)]="confirmPassword"
+        name="confirmPassword"
+        placeholder="Confirmar senha"
+        required
+      />
 
-    <button type="button" (click)="goToLogin()">
-      Já tenho conta
-    </button>
-  </form>
+      <button type="submit">
+        Cadastrar
+      </button>
+
+      <button type="button" (click)="goToLogin()">
+        Já tenho conta
+      </button>
+
+    </form>
+
+    <p style="color:red">{{ erro }}</p>
+  </div>
 </div>
