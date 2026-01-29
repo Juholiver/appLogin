@@ -1,27 +1,81 @@
-# AppLogin
+# app-login
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.17.
+## Sobre o Projeto
+Este projeto é uma aplicação web Angular simples que demonstra um fluxo básico de autenticação (cadastro, login e dashboard protegido) usando `localStorage` para simular o armazenamento de estado de usuário.
 
-## Development server
+## Funcionalidades
+*   **Cadastro de Usuário**: Permite que novos usuários criem uma conta.
+*   **Login de Usuário**: Permite que usuários existentes façam login.
+*   **Dashboard Protegido**: Uma página acessível apenas após o login.
+*   **Logout**: Permite que o usuário saia da sessão.
+*   **Gerenciamento de Estado Simplificado**: Utiliza `localStorage` do navegador para simular a persistência do estado de autenticação.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Tecnologias Utilizadas
+*   Angular (v17.x)
+*   TypeScript
+*   SCSS (para estilização)
 
-## Code scaffolding
+## Primeiros Passos
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Pré-requisitos
+Certifique-se de ter o Node.js e o Angular CLI instalados em sua máquina.
+*   Node.js: `https://nodejs.org/`
+*   Angular CLI: `npm install -g @angular/cli`
 
-## Build
+### Instalação
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+1.  Clone este repositório:
+    ```bash
+    git clone <https://github.com/Juholiver/appLogin>
+    cd app-login
+    ```
+2.  Instale as dependências:
+    ```bash
+    npm install
+    ```
 
-## Running unit tests
+### Executando a Aplicação
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Para iniciar o servidor de desenvolvimento:
+```bash
+ng serve
+```
+Navegue até `http://localhost:4200/`. A aplicação será recarregada automaticamente se você alterar qualquer um dos arquivos fonte.
 
-## Running end-to-end tests
+### Executando Testes
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Para executar os testes unitários:
+```bash
+ng test
+```
 
-## Further help
+## Estrutura do Projeto
+```
+.
+├── src/
+│   ├── app/
+│   │   ├── auth/            # Serviço e guarda de autenticação
+│   │   ├── pages/           # Componentes de página (login, register, dashboard)
+│   │   ├── app.component.ts # Componente raiz
+│   │   ├── app.routes.ts    # Definição das rotas
+│   │   └── ...
+│   ├── assets/              # Ativos estáticos
+│   ├── favicon.ico
+│   ├── index.html
+│   ├── main.ts              # Ponto de entrada da aplicação
+│   └── styles.scss          # Estilos globais
+├── angular.json             # Configuração do Angular CLI
+├── package.json             # Dependências e scripts do projeto
+├── README.md                # Este arquivo
+└── tsconfig.json            # Configurações do TypeScript
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Como a Autenticação Funciona (Simulada)
+
+Este projeto utiliza `localStorage` para simular o processo de autenticação.
+*   Ao **cadastrar**, as credenciais (email e senha) são armazenadas no `localStorage` do navegador.
+*   Ao **fazer login**, as credenciais fornecidas são verificadas em relação às credenciais armazenadas no `localStorage`. Se corresponderem, um sinalizador `isLoggedIn` é definido no `localStorage`.
+*   O `AuthGuard` verifica a existência do sinalizador `isLoggedIn` no `localStorage` para proteger a rota do `dashboard`.
+*   Ao **fazer logout**, o sinalizador `isLoggedIn` é removido do `localStorage`.
+
+**Importante**: Esta abordagem é apenas para fins de demonstração e **não é segura** para aplicações em produção. Em uma aplicação real, você usaria um backend para autenticação, tokens JWT e sessões seguras (ex: cookies HttpOnly).
