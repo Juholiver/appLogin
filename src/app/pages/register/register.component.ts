@@ -20,20 +20,32 @@ export class RegisterComponent {
     constructor(private router: Router, private authService: AuthService) {}
 
   register() {
+
     if (this.password !== this.confirmPassword) {
       this.erro = 'As senhas não coincidem.';
       return;
     }
 
-    if (this.authService.register(this.name, this.email, this.password)) {
-      //redirecionando para o login após registro
-      this.router.navigate(['/login']);
-    } else {
-      this.erro = 'Erro ao registrar usuário.';
-    }
+    const user = {
+      name: this.name,
+      email: this.email,
+      password: this.password
+    };
+
+    this.authService.register(user).subscribe({
+      next: (res) => {
+        alert('Usuário criado com sucesso!');
+        this.router.navigate(['/login']);
+      },
+      error: (err) => {
+        console.error(err);
+        this.erro = 'Erro ao registrar usuário.';
+      }
+    });
+
   }
-    // 3. Crie o método de navegação
-    goToLogin() {
-      this.router.navigate(['/login']);
-    }
+
+  goToLogin() {
+    this.router.navigate(['/login']);
+  }
 }

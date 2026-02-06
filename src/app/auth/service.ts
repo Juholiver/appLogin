@@ -1,45 +1,38 @@
-import { Injectable } from "@angular/core";
-import { Router } from "@angular/router";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
-
-@Injectable({ providedIn: 'root' })
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthService {
-  private loggedInKey = 'loggedIn';
-  private registeredUserKey = 'registeredUser';
 
-  constructor(private router: Router) {}
+  private apiUrl = 'https://apploginnodejs.onrender.com';
 
-  login(email: string, password: string): boolean {
-    const storedUser = localStorage.getItem(this.registeredUserKey);
-    if (!storedUser) return false;
+  constructor(
+    private http: HttpClient,
+    private router: Router
+  ) {}
 
-    try {
-      const user = JSON.parse(storedUser);
-      if (email === user.email && password === user.password) {
-        localStorage.setItem(this.loggedInKey, 'true');
-        return true;
-      }
-    } catch {
-      localStorage.removeItem(this.registeredUserKey);
-    }
-
-    return false;
+  register(user: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/cadastro`, user);
   }
 
-  register(name: string, email: string, password: string): boolean {
-    if (!name || !email || !password) return false;
+  getUsers(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/usuarios`);
+  }
+  login(data:any){
+    return this.http.post(`${this.apiUrl}/login`, data);
+}
 
-    const newUser = { name, email, password };
-    localStorage.setItem(this.registeredUserKey, JSON.stringify(newUser));
-    return true;
+  isLoggedIn(): boolean {
+    return localStorage.getItem('loggedIn') === 'true';
   }
 
-  logout() {
-    localStorage.removeItem(this.loggedInKey);
+  logout(): void {
+    localStorage.removeItem('loggedIn');
     this.router.navigate(['/login']);
   }
 
-  isLoggedIn(): boolean {
-    return localStorage.getItem(this.loggedInKey) === 'true';
-  }
 }
